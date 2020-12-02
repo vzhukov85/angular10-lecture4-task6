@@ -66,6 +66,12 @@ export class StudentsTableComponent implements OnInit, JournalUpdate {
 
   private fillHeaderDates(): void {
     const lessonDates = this.subjectSrv.lessonDates;
+    if (lessonDates.length === 0) {
+      lessonDates.push( {
+        date: new Date(),
+        count: 0
+      });
+    }
     const firstDate = lessonDates[0].date;
     const lastDate = lessonDates[lessonDates.length - 1].date;
     this.fillLessonDates(lessonDates);
@@ -87,6 +93,9 @@ export class StudentsTableComponent implements OnInit, JournalUpdate {
     this.subjects.forEach((element) => {
       lessonNames.push(element.topic);
     });
+    if (lessonNames.length === 0) {
+      lessonNames.push('Урок 1');
+    }
     return lessonNames;
   }
 
@@ -183,6 +192,9 @@ export class StudentsTableComponent implements OnInit, JournalUpdate {
     this.subjects.forEach((element) => {
       columns.push(prefix + count++);
     });
+    if (columns.length === 0) {
+      columns.push(prefix + count++);
+    }
     return columns;
   }
 

@@ -7,17 +7,13 @@ import { SubjectElement } from './subject.service';
 })
 export class JournalDaoService {
 
-  constructor() {
-    if (this.getAllSubjects() === null) {
-      localStorage.setItem('subjects', JSON.stringify([]));
-    }
-    if (this.getAllStudentGrades() === null) {
-      localStorage.setItem('studentsGrades', JSON.stringify([]));
-    }
-  }
+  constructor() {}
 
   getAllSubjects(): SubjectElement[] {
-    const obj: SubjectElement[] = JSON.parse(localStorage.getItem('subjects'));
+    let obj: SubjectElement[] = JSON.parse(localStorage.getItem('subjects'));
+    if (!obj) {
+      obj = [];
+    }
     obj.forEach(element => {
       element.dateSubject = new Date(element.dateSubject);
     });
@@ -26,17 +22,18 @@ export class JournalDaoService {
 
   saveSubjects(subjects: SubjectElement[]): void {
     localStorage.setItem('subjects', JSON.stringify(subjects));
-    console.log('saveSubjects: ', subjects);
   }
 
   getAllStudentGrades(): StudentsGrades[] {
-    const res = JSON.parse(localStorage.getItem('studentsGrades'));
-    return res;
+    let obj: StudentsGrades[] = JSON.parse(localStorage.getItem('studentsGrades'));
+    if (!obj) {
+      obj = [];
+    }
+    return obj;
   }
 
   saveStudentsGrades(studentsGrades: StudentsGrades[]): void {
     localStorage.setItem('studentsGrades', JSON.stringify(studentsGrades));
-    console.log('studentsGrades: ', studentsGrades);
   }
 
   addSubjectFromGrade(index: number): void {
