@@ -3,14 +3,14 @@
   <mat-grid-tile colspan="1" rowspan="1">
     <mat-form-field appearancece="fill">
       <mat-label>Номер</mat-label>
-      <input matInput type="number" maxlength="3" [formControl]="position" required min="1" (change)="checkExist()"/>
+      <input matInput type="number" maxlength="3" [(ngModel)]="position" min="1" (change)="checkExist()"/>
     </mat-form-field>
   </mat-grid-tile>
 
   <mat-grid-tile colspan="1" rowspan="1">
     <mat-form-field appearance="fill">
       <mat-label>Дата урока</mat-label>
-      <input matInput [matDatepicker]="picker" [formControl]="dateSubject" readonly required>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="dateSubject" readonly>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -19,7 +19,7 @@
   <mat-grid-tile colspan="1" rowspan="1">
     <mat-form-field appearancece="fill" style="width: 100%">
       <mat-label>Тема урока</mat-label>
-      <input matInput  type="text"  [formControl]="topic" required/>
+      <input matInput  type="text"  [(ngModel)]="topic"/>
     </mat-form-field>
   </mat-grid-tile>
 
@@ -30,7 +30,7 @@
   <mat-grid-tile colspan="3" rowspan="1">
     <mat-form-field appearancece="fill">
       <mat-label>Домашнее задание</mat-label>
-      <textarea matInput [formControl]="homework" requiredv ></textarea>
+      <textarea matInput [(ngModel)]="homework" ></textarea>
     </mat-form-field>
   </mat-grid-tile>
 
@@ -41,7 +41,7 @@
   <mat-grid-tile colspan="3" rowspan="1">
     <mat-form-field appearancece="fill">
       <mat-label>Примечание</mat-label>
-      <textarea matInput  [formControl]="notice" ></textarea>  
+      <textarea matInput  [(ngModel)]="notice" ></textarea>  
     </mat-form-field>
   </mat-grid-tile>
 

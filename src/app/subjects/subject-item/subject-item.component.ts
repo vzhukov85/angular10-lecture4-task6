@@ -10,11 +10,11 @@ import { SubjectElement, SubjectService } from '../../services/subject.service';
   styleUrls: ['./subject-item.component.css'],
 })
 export class SubjectItemComponent implements OnInit {
-  position = new FormControl('', [Validators.required]);
-  dateSubject = new FormControl('', [Validators.required]);
-  topic = new FormControl('', [Validators.required]);
-  homework = new FormControl('', [Validators.required]);
-  notice = new FormControl('');
+  @Input() position;
+  @Input() dateSubject;
+  @Input() topic;
+  @Input() homework;
+  @Input() notice;
 
   @Input() parent: SubjectTableComponent;
 
@@ -31,11 +31,11 @@ export class SubjectItemComponent implements OnInit {
 
   addElement(): void {
     const element: SubjectElement = {
-      position: this.position.value,
-      dateSubject: this.dateSubject.value,
-      topic: this.topic.value,
-      homework: this.homework.value,
-      notice: this.notice.value,
+      position: this.position,
+      dateSubject: this.dateSubject,
+      topic: this.topic,
+      homework: this.homework,
+      notice: this.notice,
     };
     console.log('add element', element);
     this.subjectSrv.addElement(element);
@@ -47,7 +47,7 @@ export class SubjectItemComponent implements OnInit {
   checkExist(): void {
     this.elementExist = false;
     this.subjectSrv.subjects.forEach(item => {
-      if (item.position === this.position.value) {
+      if (item.position === this.position) {
         this.elementExist = true;
         return;
       }
@@ -64,21 +64,21 @@ export class SubjectItemComponent implements OnInit {
   }
 
   selectElement(element: SubjectElement): void {
-    this.position.setValue(element.position);
-    this.dateSubject.setValue(element.dateSubject);
-    this.topic.setValue(element.topic);
-    this.homework.setValue(element.homework);
-    this.notice.setValue(element.notice);
+    this.position = element.position;
+    this.dateSubject = element.dateSubject;
+    this.topic = element.topic;
+    this.homework = element.homework;
+    this.notice = element.notice;
     this.elementExist = true;
     this.updateButtonText();
   }
 
   clean(): void {
-    this.position.setValue(null);
-    this.dateSubject.setValue(null);
-    this.topic.setValue(null);
-    this.homework.setValue(null);
-    this.notice.setValue(null);
+    this.position = null;
+    this.dateSubject = null;
+    this.topic = null;
+    this.homework = null;
+    this.notice = null;
     this.elementExist = false;
     this.updateButtonText();
   }
