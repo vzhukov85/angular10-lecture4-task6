@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { JournalUpdate, LessonDate, SubjectElement, SubjectService } from 'src/app/services/subject.service';
+import { JournalUpdate, LessonDate, SubjectElement, SubjectService } from '../../services/subject.service';
 import {
   Result,
   StudentGradesService,

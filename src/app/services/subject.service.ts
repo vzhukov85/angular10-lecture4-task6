@@ -47,6 +47,7 @@ export class SubjectService {
   private saveSubjects(subjects: SubjectElement[]): void {
     this.journalDaoSrv.saveSubjects(subjects);
     if (this.journalCallback != null) {
+      console.log('callback', this.subjects);
       this.journalCallback.updateColumns();
     }
   }
